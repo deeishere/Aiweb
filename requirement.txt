@@ -1,0 +1,7 @@
+
+werkzeug==2.3.4
+Flask==2.2.5
+openpyxl==3
+gunicorn==21
+gspread
+oauth2client
