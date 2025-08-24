@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>نموذج التسجيل</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Background canvas -->
+  <canvas id="nodes-bg" aria-hidden="true"></canvas>
+
+    
+
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="AI Logo" class="logo" />
+
+    <div class="join-us-container">
+        <button type="button" class="join-us-btn" onclick="showTab('register')">انضم إلينا</button>
+    </div>
+
+    <div class="main-definition-wrapper">
+        <div class="info-box">
+            <h3 style="margin-bottom:10px;">من نحن</h3>
+            <p style="margin-bottom: 20px;">جاء تأسيس نادي استجابةً لحاجة واضحة وملحة لدى طلاب الجامعة لوجود نادي طلابي متخصص في مجال الذكاء الاصطناعي. حيث لاحظنا غياب نادٍ يعنى بتطوير المهارات في الذكاء الاصطناعي ويواكب التقدم التقني العالمي والمحلي.</p>
+        </div>
+
+        <div class="info-boxes-row">
+            <div class="info-box">
+                <h3 style="margin-bottom:10px;">رؤيـتنا</h3>
+                <p style="margin-bottom: 20px;">أن نصبح المركز الأبرز للابتكار والتعلم في مجال الذكاء الاصطناعي على مستوى الجامعات، ونساهم بفعالية في بناء مجتمع تقني متميز يواكب التطورات العالمية ويعمل على تطوير حلول مبتكرة لتحديات المستقبل</p>
+            </div>
+
+            <div class="info-box">
+                <h3 style="margin-bottom:10px;">رسالتنا</h3>
+                <p>نسعى في نادي الذكاء الاصطناعي بجامعتنا إلى تمكين الطلاب من تنمية معارفهم، وتوفير بيئة محفزة تتيح لهم التعلم، الابتكار، والمشاركة في الأنشطة و المشاريع التي تعزز جاهزيتهم لسوق العمل، وتتماشى مع مستهدفات رؤية المملكة 2030 في بناء كوادر وطنية متخصصة في الذكاء الاصطناعي.</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3 style="margin-bottom:10px;">أهدافنا</h3>
+            <ul>
+                <li>تطوير المهارات التقنية: تقديم دورات متقدمة وورش عمل في الذكاء الاصطناعي وتعلم الآلة، لتعزيز الجاهزية التقنية للطلاب.</li>
+                <li>التوعية والتثقيف: تنظيم ندوات ومحاضرات حول أحدث التطورات وكيفية تطبيقها عمليًا.</li>
+                <li>بناء شبكة طلابية قوية: ربط الطلاب المهتمين وتسهيل التعاون وتبادل الخبرات لبناء بيئة تعليمية محفزة.</li>
+                <li>الشراكات المجتمعية والأكاديمية: إقامة علاقات مع شركات أكاديمية وتقنية رائدة لتأمين فرص تدريبية وتعزيز التطور المهني.</li>
+                <li>دعم المشاريع الإبداعية: تشجيع تنفيذ مشاريع تطبيقية في الذكاء الاصطناعي، ودعمها بالمصادر والإشراف المطلوب.</li>
+            </ul>
+        </div>
+
+        <div class="info-box">
+            <h3 style="margin-bottom:10px;">تعريف اللجان</h3>
+            <p>يضم النادي عدة أقسام متخصصة مثل الإعلام، الموارد، والتصميم، حيث يتيح لكل عضو اختيار القسم الذي يناسب اهتماماته وتطوير مهاراته فيه.</p>
+        </div>
+    </div>
+
+    <div class="form-box">
+        <span class="close-button">&times;</span> <!-- Close button -->
+        <div id="tab-content-register" class="tab-content" style="display:block;">
+            <h2>انضم إلينا</h2>
+            <form id="registerForm">
+                <div class="input-group">
+                    <label for="name">الاسم</label>
+                    <input type="text" id="name" name="name" required />
+                </div>
+                <div class="input-group">
+                    <label for="university_id">الرقم الجامعي</label>
+                    <input type="text" id="university_id" name="university_id" required />
+                </div>
+                <div class="input-group">
+                    <label for="phone">رقم الهاتف</label>
+                    <input type="text" id="phone" name="phone" placeholder="05XXXXXXXX" required />
+                </div>
+                <div class="input-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" name="email" placeholder="يفضل إيميل غير جامعي" required />
+                </div>
+                <div class="input-group">
+                    <label for="about_yourself">عرفنا عن نفسك</label>
+                    <textarea id="about_yourself" name="about_yourself" rows="4" ></textarea>
+                </div>
+              <!-- Dropdown -->
+            <label for="category" style="display:block; margin: 10px 0 5px 0; text-align:right;">اختر القسم:</label>
+            <select id="category" name="category" onchange="showSection()">
+              <option value="">-- اختر --</option>
+              <option value="research">لجنة البحوث</option>
+              <option value="innovation">لجنة الإبتكار</option>
+              <option value="projects_dev">لجنة تطوير المشاريع</option>
+              <option value="design_team">فريق التصميم</option>
+              <option value="content_team">فريق كتابة المحتوى</option>
+              <option value="marketing_team">فريق التسويق</option>
+              <option value="relations">لجنة العلاقات</option>
+              <option value="hr">لجنة الموارد البشرية</option>
+              <option value="finance">لجنة المالية</option>
+            </select>
+
+            <!-- اعلام -->
+            <div id="e3lam-box" style="display:none; margin-bottom: 15px;">
+              <label for="e3lam-text" style="display:block; margin: 10px 0 5px 0; text-align:right;">تفاصيل اعلام:</label>
+              <textarea id="e3lam-text" name="e3lam-text"></textarea>
+            </div>
+            <!-- موارد -->
+            <div id="mawared-box" style="display:none; margin-bottom: 15px;">
+              <label for="mawared-text" style="display:block; margin: 10px 0 5px 0; text-align:right;">تفاصيل موارد:</label>
+              <textarea id="mawared-text" name="mawared-text"></textarea>
+            </div>
+            <!-- تصميم -->
+            <div id="tasmeem-box" style="display:none; margin-bottom: 15px;">
+              <label for="about" style="display:block; margin: 10px 0 5px 0; text-align:right;">حدثنا عن نفسك:</label>
+              <textarea id="about" name="about"></textarea>
+              <label for="offer" style="display:block; margin: 10px 0 5px 0; text-align:right;">ايش ممكن تقدم:</label>
+              <textarea id="offer" name="offer"></textarea>
+            </div>
+            <button type="submit" style="margin-top: 20px; width: 100%;">إرسال</button>
+            </form>
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div class="footer-light"></div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+
