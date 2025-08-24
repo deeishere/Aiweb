@@ -28,6 +28,7 @@ def register():
     try:
         name = request.form['name']
         university_id = request.form['university_id']
+        college_major = request.form['college_major'] # Get College/Major
         phone = request.form['phone']
         email = request.form['email']
         about_yourself = request.form.get('about_yourself', '') # Get "عرفنا عن نفسك" content
@@ -39,7 +40,7 @@ def register():
         now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         # أضيفي كل القيم للصف كعمود جديد في الشيت
-        row = [now, name, university_id, phone, email, about_yourself, category, e3lam_text, mawared_text, about, offer]
+        row = [now, name, university_id, college_major, phone, email, about_yourself, category, e3lam_text, mawared_text, about, offer]
         
         # Force insert into correct row
         last_row = len(sheet.get_all_values()) + 1
